@@ -72,4 +72,6 @@ class UserAccountActivationView(APIView):
             user = get_object_or_404(User, phone_number=phone_number)
             user.is_active = True
             user.save()
+            otp_obj.delete()
+            
             return Response({"Account activation successfully!"}, status=status.HTTP_200_OK)
