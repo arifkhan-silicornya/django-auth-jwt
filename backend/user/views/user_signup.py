@@ -1,8 +1,13 @@
+from django.core.mail import send_mail
+from jwt_auth import settings
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
 from user.serializer.user_signup import UserSignupSerializer
+from otp.serializers import OtpModelSerializer
+from utils.utils import generate_otp
 
 
 class UserSignupView(APIView):
@@ -30,6 +35,23 @@ class UserSignupView(APIView):
         serializer = UserSignupSerializer(data=user_info)
         serializer.is_valid(raise_exception=True)
         serializer.save()
+        
+        otp = generate_otp()
+        otp_info = {
+            "otp": otp,
+            "phone_number": phone_number,
+        }
+        otp_serializer = OtpModelSerializer(data=otp_info)
+        otp_serializer.is_valid(raise_exception=True)
+        otp_serializer.save()
+
+        send_mail(
+                "Account Activation",
+                f"Your OTP: {otp}",
+                settings.EMAIL_HOST_USER,
+                [email],
+                fail_silently=False
+            )
         
         return Response({"detail": "Congrates! User successfully created"}, status=status.HTTP_201_CREATED)
     

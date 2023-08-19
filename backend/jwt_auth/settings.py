@@ -46,6 +46,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "user",
     "utils",
+    "otp",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -135,3 +136,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # user model for custom user registration
 AUTH_USER_MODEL = "user.User"
+
+# Email Send Configuration
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = "mastermindtour@gmail.com"
+EMAIL_HOST_PASSWORD = "dwaaxbjzfhmhtxuu"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
