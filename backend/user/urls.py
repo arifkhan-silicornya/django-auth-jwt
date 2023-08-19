@@ -1,6 +1,7 @@
 from django.urls import path
 
 from user.views.user_signup import UserSignupView, UserAccountActivationView
+from user.views.user_login import UserLoginView
 
 urlpatterns = [
     # http://localhost:8000/user/sign-up/
@@ -15,5 +16,12 @@ urlpatterns = [
         route="account-activation/",
         view=UserAccountActivationView.as_view(),
         name="user-account-activation",
+    ),
+
+    # http://localhost:8000/user/login/
+    path(
+        route="login/",
+        view=UserLoginView.as_view(),
+        name="user-login",
     ),
 ]
