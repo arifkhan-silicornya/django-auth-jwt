@@ -52,7 +52,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         others = "others"
     gender = models.CharField(max_length=10, choices=Gender.choices, default=None, null=True, blank=True)
     country = models.CharField(max_length=100, null=True, blank=True)
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
 
     objects = UserManager()
@@ -67,4 +67,3 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name = "User"
         verbose_name_plural = "Users"
         db_table = "user"
-        
