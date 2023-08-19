@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from jwt_auth.JWT_SETTINGS import JWT_SETTINGS
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -81,6 +82,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'jwt_auth.wsgi.application'
 
+# JWT Settings
+SIMPLE_JWT = JWT_SETTINGS
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
